@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata = {
-  title: "Movie List",
+  title: "KinoFlix",
   description: "Project created to studies purpose only",
 };
 

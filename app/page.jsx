@@ -37,7 +37,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="w-full container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <div className="w-full container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
       {topMovies.length === 0 && <p>Loading...</p>}
       {topMovies.length > 0 &&
         topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
