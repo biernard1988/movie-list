@@ -37,12 +37,10 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container">
-      <div className="movies-container">
-        {topMovies.length === 0 && <p>Loading...</p>}
-        {topMovies.length > 0 &&
-          topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
-      </div>
+    <div className="w-full container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {topMovies.length === 0 && <p>Loading...</p>}
+      {topMovies.length > 0 &&
+        topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
     </div>
   );
 }
