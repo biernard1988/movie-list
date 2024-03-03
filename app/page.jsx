@@ -2,6 +2,8 @@
 import MovieCard from "@/components/MovieCard";
 import React, { useEffect, useState } from "react";
 
+const useToken = process.env.NEXT_PUBLIC_API_TOKEN;
+
 export default function Home() {
   const [topMovies, setTopMovies] = useState([]);
 
@@ -12,8 +14,7 @@ export default function Home() {
           method: "GET",
           headers: {
             accept: "application/json",
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhMmM0MjFmNmI4MmQyMjFiZDA4YzRlNzc0ZjY0NjljYiIsInN1YiI6IjY1ZTMzZGU1NDk4ZWY5MDEzMWVjNzRkNSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5lsRBNXjIf_tgJujITDYFhA4BzWzA-5xcBu4XZFseqE",
+            Authorization: `Bearer ${useToken}`,
           },
         };
 
