@@ -13,6 +13,7 @@ export default function MovieCard({ movie, showLink = true }) {
           <Image
             width={450}
             height={400}
+            priority={true}
             className="object-cover"
             src={imageURL + movie.poster_path}
             alt={movie.title}

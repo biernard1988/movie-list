@@ -34,7 +34,7 @@ export default function Navbar() {
         </div>
       </Link>
 
-      <form className="flex gap-3" onSubmit={handleSubmit}>
+      <form className="flex gap-3" name="search" onSubmit={handleSubmit}>
         <input
           className="text-black p-2 rounded-lg outline-none"
           type="text"

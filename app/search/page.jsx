@@ -12,8 +12,10 @@ export default function Search() {
   const query = searchParams.get("q");
 
   useEffect(() => {
-    const fetchTopMovies = async () => {
+    const fetchSearchedMovies = async () => {
       try {
+        if (!query) return;
+
         const options = {
           method: "GET",
           headers: {
@@ -23,23 +25,27 @@ export default function Search() {
         };
 
         const response = await fetch(
-          `https://api.themoviedb.org/3/search/movie?&query=${query}`,
+          `https://api.themoviedb.org/3/search/movie?query=${query}`,
           options
         );
 
-        if (!response) {
-          throw new Error("Failed to fetch top rated movies");
+        if (!response.ok) {
+          throw new Error("Failed to fetch results");
         }
 
         const data = await response.json();
-        setMovies(data.results);
+        if (data.results) {
+          setMovies(data.results);
+        } else {
+          setMovies([]);
+        }
       } catch (error) {
-        console.error("Error fetching top rated movies:", error);
+        console.error("Error fetching results:", error);
       }
     };
 
-    fetchTopMovies();
-  }, []);
+    fetchSearchedMovies();
+  }, [query]);
 
   return (
     <div className="flex flex-col justify-center items-center space-y-10">

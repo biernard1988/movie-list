@@ -23,7 +23,7 @@ export default function Home() {
           options
         );
 
-        if (!response) {
+        if (!response.ok) {
           throw new Error("Failed to fetch top rated movies");
         }
 
