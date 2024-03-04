@@ -28,7 +28,7 @@ export default function Navbar() {
             Flix
           </h1>
           <Clapperboard
-            className="h-8 w-8 hover:text-red-600 transition duration-500"
+            className="animate-bounce h-8 w-8 hover:text-red-600 transition duration-500"
             alt="Clapperboard icon"
           />
         </div>

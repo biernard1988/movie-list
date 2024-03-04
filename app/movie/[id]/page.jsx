@@ -50,37 +50,48 @@ export default function Movies() {
     }
   }, [id]);
 
+  const formatCurrency = (number) => {
+    return number.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+  };
+
   return (
-    <div>
+    <div className="container mx-auto">
       {movie && (
-        <>
+        <div className="border border-black rounded-lg mx-40 my-10 w-50">
           <MovieCard movie={movie} showLink={false} />
-          <p>{movie.tagline}</p>
-          <div className="flex gap-2">
-            <h3 className="flex gap-2">
-              <CircleDollarSign /> Budget:
-            </h3>
-            <p>{movie.budget}</p>
+          <p className="flex justify-center items-center text-lg mt-5">
+            "{movie.tagline}"
+          </p>
+          <div className="space-y-5 p-5">
+            <div className="flex gap-2">
+              <h3 className="flex gap-2">
+                <CircleDollarSign /> Budget:
+              </h3>
+              <p>{formatCurrency(movie.budget)}</p>
+            </div>
+            <div className="flex gap-2">
+              <h3 className="flex gap-2">
+                <Clock /> Duration:
+              </h3>
+              <p>{movie.runtime} minutes</p>
+            </div>
+            <div className="flex gap-2">
+              <h3 className="flex gap-2">
+                <TrendingUp /> Revenue:
+              </h3>
+              <p>{formatCurrency(movie.revenue)}</p>
+            </div>
+            <div className="flex flex-col gap-2">
+              <h3 className="flex gap-2 mb-5">
+                <NotebookText /> Description:
+              </h3>
+              <p className="text-justify px-20">{movie.overview}</p>
+            </div>
           </div>
-          <div className="flex gap-2">
-            <h3 className="flex gap-2">
-              <Clock /> Duration:
-            </h3>
-            <p>{movie.runtime} minutes</p>
-          </div>
-          <div className="flex gap-2">
-            <h3 className="flex gap-2">
-              <TrendingUp /> Revenue:
-            </h3>
-            <p>{movie.revenue}</p>
-          </div>
-          <div className="flex gap-2">
-            <h3 className="flex gap-2">
-              <NotebookText /> Description:
-            </h3>
-            <p>{movie.overview}</p>
-          </div>
-        </>
+        </div>
       )}
     </div>
   );
