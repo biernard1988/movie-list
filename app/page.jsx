@@ -1,6 +1,6 @@
 "use client";
 import MovieCard from "@/components/MovieCard";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 const useToken = process.env.NEXT_PUBLIC_API_TOKEN;
 
@@ -37,11 +37,15 @@ export default function Home() {
     fetchTopMovies();
   }, []);
 
-  return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-      {topMovies.length === 0 && <p>Loading...</p>}
-      {topMovies.length > 0 &&
-        topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
-    </div>
-  );
+  const renderMovieGrid = useCallback(() => {
+    return (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {topMovies.length === 0 && <p>Loading...</p>}
+        {topMovies.length > 0 &&
+          topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
+      </div>
+    );
+  }, [topMovies]); // Only re-render if topMovies changes
+
+  return renderMovieGrid();
 }

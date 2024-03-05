@@ -1,7 +1,8 @@
 "use client";
 import MovieCard from "@/components/MovieCard";
 import { useSearchParams } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { shallowEqual } from "react-shallow-compare";
 
 const useToken = process.env.NEXT_PUBLIC_API_TOKEN;
 
@@ -47,16 +48,16 @@ export default function Search() {
     fetchSearchedMovies();
   }, [query]);
 
-  return (
-    <div className="flex flex-col justify-center items-center space-y-10">
-      <h1 className="mt-5 text-xl">
-        Results for: <span className="italic text-red-600">{query}</span>
-      </h1>
+  const renderMovieGrid = useCallback(
+    () => (
       <div className="w-full container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {movies.length === 0 && <p>Loading...</p>}
         {movies.length > 0 &&
           movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
       </div>
-    </div>
+    ),
+    [movies, shallowEqual] // Use shallowEqual to compare movie data for deep equality
   );
+
+  return renderMovieGrid();
 }
