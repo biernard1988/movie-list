@@ -1,14 +1,17 @@
 "use client";
 import MovieCard from "@/components/MovieCard";
 import {
+  CalendarCheck,
   CircleDollarSign,
   Clock,
   NotebookText,
   TrendingUp,
 } from "lucide-react";
+import Image from "next/image";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
+const imageURL = process.env.NEXT_PUBLIC_IMG;
 const useToken = process.env.NEXT_PUBLIC_API_TOKEN;
 
 export default function Movies() {
@@ -37,6 +40,7 @@ export default function Movies() {
 
         const data = await response.json();
         if (data) {
+          console.log(data);
           setMovie(data);
         } else {
           setMovie([]);
@@ -50,6 +54,10 @@ export default function Movies() {
     }
   }, [id]);
 
+  const getYear = (dateString) => {
+    return new Date(dateString).getFullYear();
+  };
+
   const formatCurrency = (number) => {
     return number.toLocaleString("en-US", {
       style: "currency",
@@ -58,41 +66,56 @@ export default function Movies() {
   };
 
   return (
-    <div className="container mx-auto">
+    <article className="container mx-auto">
       {movie && (
-        <div className="border border-black rounded-lg mx-40 my-10 w-50">
-          <MovieCard movie={movie} showLink={false} />
-          <p className="flex justify-center items-center text-lg mt-5">
-            "{movie.tagline}"
-          </p>
-          <div className="space-y-5 p-5">
-            <div className="flex gap-2">
-              <h3 className="flex gap-2">
-                <CircleDollarSign /> Budget:
-              </h3>
-              <p>{formatCurrency(movie.budget)}</p>
+        <section className="flex flex-col justify-center items-center m-10">
+          <Image
+            width={450}
+            height={400}
+            priority={true}
+            className="rounded-lg"
+            src={imageURL + movie.poster_path}
+            alt={movie.title}
+          />
+          <p className="text-lg my-5">"{movie.tagline}"</p>
+          <aside className="parent flex flex-col md:flex-row justify-center xl:justify-between items-center border-t p-5 xl:mx-60 gap-5 md:gap-32 lg:gap-52">
+            <div className="left-side space-y-8 mb-6 md:mb-0">
+              <div className="flex gap-2">
+                <h3 className="flex gap-2">
+                  <CalendarCheck /> Year:
+                </h3>
+                <p>{getYear(movie.release_date)}</p>
+              </div>
+              <div className="flex gap-2">
+                <h3 className="flex gap-2">
+                  <Clock /> Duration:
+                </h3>
+                <p>{movie.runtime} minutes</p>
+              </div>
+              <div className="flex gap-2">
+                <h3 className="flex gap-2">
+                  <CircleDollarSign /> Budget:
+                </h3>
+                <p>{formatCurrency(movie.budget)}</p>
+              </div>
+              <div className="flex gap-2">
+                <h3 className="flex gap-2">
+                  <TrendingUp /> Revenue:
+                </h3>
+                <p>{formatCurrency(movie.revenue)}</p>
+              </div>
             </div>
-            <div className="flex gap-2">
-              <h3 className="flex gap-2">
-                <Clock /> Duration:
-              </h3>
-              <p>{movie.runtime} minutes</p>
+            <div className="right-side md:mt-14 lg:mt-0 mb-8">
+              <div className="flex flex-col gap-2">
+                <h3 className="flex gap-2 mb-5">
+                  <NotebookText /> Description:
+                </h3>
+                <p className="text-pretty">{movie.overview}</p>
+              </div>
             </div>
-            <div className="flex gap-2">
-              <h3 className="flex gap-2">
-                <TrendingUp /> Revenue:
-              </h3>
-              <p>{formatCurrency(movie.revenue)}</p>
-            </div>
-            <div className="flex flex-col gap-2">
-              <h3 className="flex gap-2 mb-5">
-                <NotebookText /> Description:
-              </h3>
-              <p className="text-justify px-20">{movie.overview}</p>
-            </div>
-          </div>
-        </div>
+          </aside>
+        </section>
       )}
-    </div>
+    </article>
   );
 }

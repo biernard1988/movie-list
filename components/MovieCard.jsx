@@ -17,8 +17,10 @@ export default function MovieCard({ movie, showLink = true }) {
     return null; // Se não deve mostrar o card, retorna null
   }
 
+  const formattedVoteAverage = parseFloat(movie.vote_average).toFixed(1);
+
   return (
-    <div className="container p-10 sm:p-0">
+    <div className="container mx-auto px-10 sm:px-0 my-5 sm:my-0">
       <div className="flex justify-center items-center rounded-t-lg overflow-hidden my-2 mx-5 shadow-lg">
         <Image
           width={450}
@@ -35,13 +37,12 @@ export default function MovieCard({ movie, showLink = true }) {
         </h2>
         <div className="flex items-center gap-2">
           <Star
-            className="text-red-500 mb-0.5"
+            className="text-red-500 mb-0.5 hover:animate-spin"
             width={16}
             height={16}
             alt="Star icon"
           />
-          {movie.vote_average}
-          <p></p>
+          {formattedVoteAverage}
         </div>
         <div className="hover:text-red-500 hover:font-bold transition duration-700">
           {showLink && <Link href={`/movie/${movie.id}`}>Details</Link>}

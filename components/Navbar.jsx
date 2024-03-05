@@ -21,7 +21,7 @@ export default function Navbar() {
     <nav className="flex flex-col gap-5 justify-center items-center sm:flex-row sm:justify-between mx-12 my-5 sm:my-10">
       <Link href={"/"}>
         <div className="flex items-center gap-2 text-3xl font-semibold">
-          <h1>
+          <h1 className="text-4xl">
             <span className="hover:text-red-600 transition duration-500">
               Kino
             </span>
