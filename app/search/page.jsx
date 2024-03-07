@@ -2,7 +2,7 @@
 import MovieCard from "@/components/MovieCard";
 import { useSearchParams } from "next/navigation";
 import React, { useState, useEffect, useCallback } from "react";
-import { shallowEqual } from "react-shallow-compare";
+import { shallowCompare } from "react-shallow-compare";
 
 const useToken = process.env.NEXT_PUBLIC_API_TOKEN;
 
@@ -56,7 +56,7 @@ export default function Search() {
           movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
       </div>
     ),
-    [movies, shallowEqual] // Use shallowEqual to compare movie data for deep equality
+    [movies, shallowCompare] // Use shallowCompare to compare movie data for deep equality
   );
 
   return renderMovieGrid();
