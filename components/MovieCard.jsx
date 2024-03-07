@@ -20,7 +20,7 @@ export default function MovieCard({ movie, showLink = true }) {
   const formattedVoteAverage = parseFloat(movie.vote_average).toFixed(1);
 
   return (
-    <div className="container mx-auto px-10 sm:px-0 my-5 sm:my-0">
+    <div className="px-10 sm:px-0 my-5 sm:my-0">
       <div className="flex justify-center items-center rounded-t-lg overflow-hidden my-2 mx-5 shadow-lg">
         <Image
           width={450}
