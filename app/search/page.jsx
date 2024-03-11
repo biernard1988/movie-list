@@ -1,5 +1,5 @@
 "use client";
-import Loading from "@/app/loading";
+
 import MovieCard from "@/components/MovieCard";
 import { useSearchParams } from "next/navigation";
 import React, { useState, useEffect, useCallback } from "react";
