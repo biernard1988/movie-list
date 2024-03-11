@@ -3,7 +3,7 @@ import React from "react";
 export default function Loading() {
   const arr = Array.from({ length: 20 });
   return (
-    <>
+    <div>
       {arr.map((index) => (
         <div className="mx-4">
           <article
@@ -27,6 +27,6 @@ export default function Loading() {
           </article>
         </div>
       ))}
-    </>
+    </div>
   );
 }

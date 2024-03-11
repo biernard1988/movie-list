@@ -3,7 +3,6 @@ import {
   CalendarCheck,
   CircleDollarSign,
   Clock,
-  NotebookText,
   TrendingUp,
 } from "lucide-react";
 import Image from "next/image";
@@ -106,10 +105,7 @@ export default function Movies() {
                 </div>
               </div>
               <div className="right-side mb-8">
-                <div className="">
-                  {/*   <h3 className="flex gap-2 mb-5">
-                    <NotebookText /> Description:
-                  </h3> */}
+                <div>
                   <p className="text-pretty">{movie.overview}</p>
                 </div>
               </div>
