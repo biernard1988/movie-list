@@ -2,7 +2,7 @@
 
 import MovieCard from "@/components/MovieCard";
 import { useSearchParams } from "next/navigation";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, Suspense } from "react";
 
 const useToken = process.env.NEXT_PUBLIC_API_TOKEN;
 
@@ -59,5 +59,7 @@ export default function Search() {
     [movies]
   );
 
-  return renderMovieGrid();
+  return (
+    <Suspense fallback={<div>Loading...</div>}>{renderMovieGrid()}</Suspense>
+  );
 }
