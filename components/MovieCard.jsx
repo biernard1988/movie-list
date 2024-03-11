@@ -10,11 +10,10 @@ export default function MovieCard({ movie, showLink = true }) {
     return new Date(dateString).getFullYear();
   };
 
-  // Verifica se movie.poster_path tem uma string não vazia
   const shouldShowCard = movie.poster_path && movie.poster_path.length > 0;
 
   if (!shouldShowCard) {
-    return null; // Se não deve mostrar o card, retorna null
+    return null;
   }
 
   const formattedVoteAverage = parseFloat(movie.vote_average).toFixed(1);
