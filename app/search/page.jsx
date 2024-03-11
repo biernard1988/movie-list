@@ -51,7 +51,7 @@ export default function Search() {
   const renderMovieGrid = useCallback(
     () => (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 container mx-auto">
-        {movies.length === 0 && <p>Loading...</p>}
+        {movies.length === 0 && <p>Loading....</p>}
         {movies.length > 0 &&
           movies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
       </div>
