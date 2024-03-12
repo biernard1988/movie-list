@@ -5,11 +5,8 @@ import MovieCard from "@/components/MovieCard";
 import { useSearchParams } from "next/navigation";
 import React, { useState, useEffect, useCallback } from "react";
 
-const useToken = process.env.NEXT_PUBLIC_API_TOKEN;
-
 export default function Search() {
   const searchParams = useSearchParams();
-
   const [movies, setMovies] = useState([]);
   const query = searchParams.get("q");
 
@@ -21,7 +18,7 @@ export default function Search() {
         method: "GET",
         headers: {
           accept: "application/json",
-          Authorization: `Bearer ${useToken}`,
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
         },
       };
 
@@ -43,7 +40,7 @@ export default function Search() {
 
   useEffect(() => {
     fetchSearchedMovies();
-  }, [query]);
+  }, []);
 
   const renderMovieGrid = useCallback(
     () => (

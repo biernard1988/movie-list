@@ -10,7 +10,6 @@ import { useParams } from "next/navigation";
 import React, { useCallback, useEffect, useState } from "react";
 
 const imageURL = process.env.NEXT_PUBLIC_IMG;
-const useToken = process.env.NEXT_PUBLIC_API_TOKEN;
 
 export default function Movies() {
   const { id } = useParams();
@@ -23,7 +22,7 @@ export default function Movies() {
           method: "GET",
           headers: {
             accept: "application/json",
-            Authorization: `Bearer ${useToken}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
           },
         };
 
@@ -38,7 +37,6 @@ export default function Movies() {
 
         const data = await response.json();
         if (data) {
-          console.log(data);
           setMovie(data);
         } else {
           setMovie([]);
