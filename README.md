@@ -41,15 +41,12 @@ npm run dev
 Use code with caution.
 Visit http://localhost:3000 in your browser.
 
-Dependencies
+---------------------------------------
+License
 
-React
-Axios
-TMDb API
-Potential Enhancements
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-Implement search functionality to filter movies
-Add pagination for handling large datasets
-Store user preferences for personalization
-Incorporate movie trailers or reviews
-Allow users to create watchlists or mark movies as favorites
+---------------------------------------
+Authors
+
+Bernard Almeida da Costa: https://github.com/biernard1988
