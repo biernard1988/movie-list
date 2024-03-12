@@ -12,8 +12,7 @@
     "lucide-react": "^0.344.0",
     "next": "latest",
     "react": "^18",
-    "react-dom": "^18",
-    "react-shallow-compare": "^1.0.3"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",
