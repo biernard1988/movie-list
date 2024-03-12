@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import Loading from "./loading";
 import MovieCard from "@/components/MovieCard";
 import React, { useCallback, useEffect, useState } from "react";
@@ -17,16 +18,12 @@ export default function Home() {
           },
         };
 
-        const response = await fetch(
+        const response = await axios.get(
           "https://api.themoviedb.org/3/movie/popular?",
           options
         );
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch top rated movies");
-        }
-
-        const data = await response.json();
+        const data = response.data;
         setTopMovies(data.results);
       } catch (error) {
         console.error("Error fetching top rated movies:", error);
