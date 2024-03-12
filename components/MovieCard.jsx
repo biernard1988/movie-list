@@ -20,7 +20,7 @@ export default function MovieCard({ movie, showLink = true }) {
 
   return (
     <div className="px-10 sm:px-0 my-5 sm:my-0">
-      <div className="flex justify-center items-center rounded-t-lg overflow-hidden my-2 mx-5 shadow-lg">
+      <div className="flex justify-center items-center rounded-t-lg overflow-hidden my-2 shadow-lg">
         <Image
           width={450}
           height={400}
@@ -30,8 +30,8 @@ export default function MovieCard({ movie, showLink = true }) {
           alt={movie.title}
         />
       </div>
-      <div className="bg-zinc-800 flex flex-col justify-center items-center rounded-b-xl p-3 space-y-3 mx-5 mb-3 shadow-lg">
-        <h2 className="text-fit">
+      <div className="bg-zinc-800 flex flex-col justify-center items-center rounded-b-xl p-3 space-y-3 shadow-lg overflow-hidden">
+        <h2 className="text-center">
           {movie.title} ({getYear(movie.release_date)})
         </h2>
         <div className="flex items-center gap-2">
