@@ -3,8 +3,6 @@ import Loading from "@/components/Loading";
 import MovieCard from "@/components/MovieCard";
 import React, { useCallback, useEffect, useState } from "react";
 
-const useToken = process.env.NEXT_PUBLIC_API_TOKEN;
-
 export default function Home() {
   const [topMovies, setTopMovies] = useState([]);
 
@@ -15,7 +13,7 @@ export default function Home() {
           method: "GET",
           headers: {
             accept: "application/json",
-            Authorization: `Bearer ${useToken}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
           },
         };
 

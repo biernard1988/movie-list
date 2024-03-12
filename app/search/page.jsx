@@ -55,3 +55,11 @@ export default function Search() {
 
   return renderMovieGrid();
 }
+
+export function SearchPage() {
+  return (
+    <Suspense fallback={<Loading />}>
+      <Search />
+    </Suspense>
+  );
+}
