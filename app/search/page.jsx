@@ -3,7 +3,7 @@ import axios from "axios";
 import Loading from "@/components/Loading";
 import MovieCard from "@/components/MovieCard";
 import { useSearchParams } from "next/navigation";
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, Suspense } from "react";
 
 export default function Search() {
   const searchParams = useSearchParams();
