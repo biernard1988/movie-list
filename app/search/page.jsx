@@ -40,7 +40,7 @@ export default function Search() {
 
   useEffect(() => {
     fetchSearchedMovies();
-  }, []);
+  }, [fetchSearchedMovies]);
 
   const renderMovieGrid = useCallback(
     () => (
