@@ -10,37 +10,37 @@ export default function Search() {
   const [movies, setMovies] = useState([]);
   const query = searchParams.get("q");
 
-  const fetchSearchedMovies = async () => {
-    try {
-      if (!query) return;
-
-      const options = {
-        method: "GET",
-        headers: {
-          accept: "application/json",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-        },
-      };
-
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?query=${query}`,
-        options
-      );
-
-      const data = response.data;
-      if (data.results) {
-        setMovies(data.results);
-      } else {
-        setMovies([]);
-      }
-    } catch (error) {
-      console.error("Error fetching results:", error);
-    }
-  };
-
   useEffect(() => {
+    const fetchSearchedMovies = async () => {
+      try {
+        if (!query) return;
+
+        const options = {
+          method: "GET",
+          headers: {
+            accept: "application/json",
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+          },
+        };
+
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/search/movie?query=${query}`,
+          options
+        );
+
+        const data = response.data;
+        if (data.results) {
+          setMovies(data.results);
+        } else {
+          setMovies([]);
+        }
+      } catch (error) {
+        console.error("Error fetching results:", error);
+      }
+    };
+
     fetchSearchedMovies();
-  }, [fetchSearchedMovies]);
+  }, [query]);
 
   const renderMovieGrid = useCallback(
     () => (
