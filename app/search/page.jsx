@@ -1,5 +1,5 @@
 "use client";
-
+import axios from "axios";
 import Loading from "@/components/Loading";
 import MovieCard from "@/components/MovieCard";
 import { useSearchParams } from "next/navigation";
@@ -13,39 +13,35 @@ export default function Search() {
   const [movies, setMovies] = useState([]);
   const query = searchParams.get("q");
 
-  useEffect(() => {
-    const fetchSearchedMovies = async () => {
-      try {
-        if (!query) return;
+  const fetchSearchedMovies = async () => {
+    try {
+      if (!query) return;
 
-        const options = {
-          method: "GET",
-          headers: {
-            accept: "application/json",
-            Authorization: `Bearer ${useToken}`,
-          },
-        };
+      const options = {
+        method: "GET",
+        headers: {
+          accept: "application/json",
+          Authorization: `Bearer ${useToken}`,
+        },
+      };
 
-        const response = await fetch(
-          `https://api.themoviedb.org/3/search/movie?query=${query}`,
-          options
-        );
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?query=${query}`,
+        options
+      );
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch results");
-        }
-
-        const data = await response.json();
-        if (data.results) {
-          setMovies(data.results);
-        } else {
-          setMovies([]);
-        }
-      } catch (error) {
-        console.error("Error fetching results:", error);
+      const data = response.data;
+      if (data.results) {
+        setMovies(data.results);
+      } else {
+        setMovies([]);
       }
-    };
+    } catch (error) {
+      console.error("Error fetching results:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchSearchedMovies();
   }, [query]);
 
