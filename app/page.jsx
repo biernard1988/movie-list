@@ -1,5 +1,5 @@
 "use client";
-import Loading from "@/components/Loading";
+import Loading from "./loading";
 import MovieCard from "@/components/MovieCard";
 import React, { useCallback, useEffect, useState } from "react";
 

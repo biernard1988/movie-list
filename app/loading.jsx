@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Loading() {
+export default function Error() {
   const arr = Array.from({ length: 20 });
   return (
     <>

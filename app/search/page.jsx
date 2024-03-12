@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import Loading from "@/components/Loading";
+import Loading from "../loading";
 import MovieCard from "@/components/MovieCard";
 import { useSearchParams } from "next/navigation";
 import React, { useState, useEffect, useCallback, Suspense } from "react";
@@ -53,13 +53,5 @@ export default function Search() {
     [movies]
   );
 
-  return renderMovieGrid();
-}
-
-export function SearchPage() {
-  return (
-    <Suspense fallback={<Loading />}>
-      <Search />
-    </Suspense>
-  );
+  return <Suspense fallback={<Loading />}>{renderMovieGrid()}</Suspense>;
 }
